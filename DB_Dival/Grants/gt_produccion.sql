@@ -1,0 +1,22 @@
+Use DB_Dival;
+Create User 'produccion'@'localhost' Identified by 'produ3';
+Grant Select, Insert, Update on DB_Dival.almacen to 'produccion'@'localhost';
+Grant Select, Insert, Update on DB_Dival.inventario to 'produccion'@'localhost';
+Grant Select, Insert, Update on DB_Dival.presentaciones to 'produccion'@'localhost';
+Grant Select on DB_Dival.recetas to 'produccion'@'localhost';
+Grant Select on DB_Dival.categorias to 'produccion'@'localhost';
+Grant Select on DB_Dival.ingredientes to 'produccion'@'localhost';
+Grant Select on DB_Dival.listas_ingredientes to 'produccion'@'localhost';
+Grant Select, Insert, Update on DB_Dival.productos to 'produccion'@'localhost';
+Grant Select on DB_Dival.proveedores to 'produccion'@'localhost';
+Grant Select on DB_Dival.vw_detallesproducto to 'produccion'@'localhost';
+Grant Select on DB_Dival.vw_ingredientescaducados to 'produccion'@'localhost';
+Grant Select on DB_Dival.vw_ventasdeldia to 'produccion'@'localhost';
+Grant Select on DB_Dival.compras to 'produccion'@'localhost';
+Grant Select on DB_Dival.detalle_compra to 'produccion'@'localhost';
+Grant Select on DB_Dival.status to 'produccion'@'localhost';
+Grant Select on DB_Dival.unidades_medida to 'produccion'@'localhost';
+Grant Select on DB_Dival.ventas to 'produccion'@'localhost';
+Grant Select on DB_Dival.detalle_venta to 'produccion'@'localhost';
+----------------------------------------------------------------------------------------
+Flush privileges;

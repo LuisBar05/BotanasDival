@@ -1,0 +1,35 @@
+use db_dival;
+
+alter table clientes_factura auto_increment=1;
+
+insert into clientes_factura(Apellido_Pat, Apellido_Mat, `Nombre(s)`, RFC, Telefono, Email, Status)
+values('Darío', 'Gallego', 'Martin', 'MADAGA939889', 891849192, null, 'D'),
+		('Iglesias', 'Gallego', 'Roberto', 'ROIGA9883918', 8723484334, null, 'D'),
+        ('Vázquez', 'Cortes', 'Isaac', 'ICOS939889', 25235235, null, 'I'),
+        ('Rodríguez', 'Crespo', 'Iker', 'CRRO939889', 326236326, null, 'D'),
+        ('Moya', 'Sanz', 'Ian', 'IAMO939889', 3246366326, null, 'D'),
+        ('Torres', 'Marquez', 'Sergio', 'SEMA939889', 36326526, null, 'I'),
+        ('Sánchez', 'Guerrero', 'Gabriel', 'GAGU939889', 675474323, null, 'D'),
+        ('Castro', 'Medina', 'Érick', 'ERCAS939889', 15134535435, null, 'D'),
+        ('Ferrer', 'Reyes', 'Aaron', 'AAFE939889', 4564364364, null, 'B'),
+        ('Calvo', 'Prieto', 'José', 'JOPRCA939889', 14534553325, null, 'D'),
+        ('Rodríguez', 'Domínguez', 'Oriol', 'ORDORO939889', 63463466, null, 'D'),
+        ('Cortes', 'Rojas', 'Roberto', 'ROROCO939889', 236235236, null, 'D'),
+        ('Sanz', 'Cortes', 'Samuel', 'SACOSA939889', 895632225, null, 'B'),
+        ('Costa', 'Castro', 'Jaime', 'JACACO939889', 8345345325, null, 'D'),
+        ('Carrasco', 'Herrero', 'Eduardo', 'EDHECA939889', 87643563252, null, 'D'),
+        ('Romero', 'Navarro', 'Pol', 'PNAPO939889', 125124, null, 'B'),
+        ('Bárcenas', 'Barradas', 'Luis', 'LUBABA939889', 8345325325, null, 'D'),
+        ('Guerrero', 'Menéndez', 'Vicente', 'VIMEGU939889', 832235235, null, 'D'),
+        ('Barradas', 'Moreno', 'Ana María', 'AMBAMO939889', 64326325, null, 'D'),
+        ('Segura', 'Morales', 'Iria', 'IRSEMO939889', 67346346, null, 'B'),
+        ('Jimenez', 'Domenech', 'Domenech', 'DODOJI939889', 2352355, null, 'D'),
+        ('Gutierrez', 'Ibañez', 'Karla', 'KAIBGU939889', 91294591259, null, 'D'),
+        ('Ortega', 'Nuñez', 'Bertha', 'BENUOR939889', 324532535, null, 'D'),
+        ('Marquez', 'Marin', 'Aya', 'AMAMA939889', 846346346, null, 'D'),
+        ('Roca', 'Ibañez', 'Rocío', 'ROROIB939889', 124124142, null, 'D'),
+        ('Cano', 'Rojas', 'Valentina', 'VAROCA939889', 52354235, null, 'D'),
+        ('Guerrero', 'Barradas', 'Mariela', 'MAGUME939889', 674747346, null, 'D'),
+        ('Ramos', 'Hernández', 'Sara', 'SAHEGU939889', 412424244, null, 'D'),
+        ('Darío', 'Gallego', 'Lula', 'LUDAGA939889', 359395935, null, 'D'),
+        ('Dolores', 'Ganta', 'Julia', 'JUGADO939889', 4365464366, null, 'D');

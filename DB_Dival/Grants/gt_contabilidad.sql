@@ -1,0 +1,24 @@
+Use DB_Dival;
+Create User 'contabilidad'@'localhost' Identified by 'conta4';
+Grant Select, Insert, Update on DB_Dival.clientes_factura to 'contabilidad'@'localhost';
+Grant Select, Insert, Update on DB_Dival.compras to 'contabilidad'@'localhost';
+Grant Select, Insert, Update on DB_Dival.detalle_compra to 'contabilidad'@'localhost';
+Grant Select, Insert, Update on DB_Dival.ventas to 'contabilidad'@'localhost';
+Grant Select, Insert, Update on DB_Dival.detalle_venta to 'contabilidad'@'localhost';
+Grant Select, Insert, Update on DB_Dival.factura to 'contabilidad'@'localhost';
+Grant Select, Insert, Update on DB_Dival.proveedores to 'contabilidad'@'localhost';
+Grant Select on DB_Dival.proveedores to 'contabilidad'@'localhost';
+Grant Select on DB_Dival.vw_detallesproducto to 'contabilidad'@'localhost';
+Grant Select on DB_Dival.vw_ingredientescaducados to 'contabilidad'@'localhost';
+Grant Select on DB_Dival.vw_ventasdeldia to 'contabilidad'@'localhost';
+Grant Select, Insert on DB_Dival.almacen to 'contabilidad'@'localhost';
+Grant Select on DB_Dival.categorias to 'contabilidad'@'localhost';
+Grant Select, Update on DB_Dival.ingredientes to 'contabilidad'@'localhost';
+Grant Select on DB_Dival.listas_ingredientes to 'contabilidad'@'localhost';
+Grant Select, Update on DB_Dival.inventario to 'contabilidad'@'localhost';
+Grant Select on DB_Dival.presentaciones to 'contabilidad'@'localhost';
+Grant Select on DB_Dival.recetas to 'contabilidad'@'localhost';
+Grant Select on DB_Dival.status to 'contabilidad'@'localhost';
+Grant Select on DB_Dival.unidades_medida to 'contabilidad'@'localhost';
+----------------------------------------------------------------------------------------
+Flush privileges;
