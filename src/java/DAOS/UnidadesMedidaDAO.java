@@ -50,4 +50,9 @@ public class UnidadesMedidaDAO<T> implements IDAO {
         }
     }
 
+    @Override
+    public void Actualizar(List<String> changedRow, Statement st, String actionQuery) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
 }
