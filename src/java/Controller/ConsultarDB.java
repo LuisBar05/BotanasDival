@@ -24,7 +24,7 @@ public class ConsultarDB {
 
         try {
             st = connectDb.getConexion().createStatement();
-            query = "select * from ".concat(tabla);
+            query = "select * from ".concat(tabla).concat(" order by 1 DESC");
             rs = st.executeQuery(query);
         } catch (SQLException sqle) {
             System.err.println("HA OCURRIDO UN ERROR");

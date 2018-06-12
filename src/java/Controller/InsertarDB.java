@@ -3,7 +3,6 @@ package Controller;
 import DAOS.*;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.util.LinkedList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -37,7 +36,7 @@ public class InsertarDB {
                 new CategoriasDAO().Insertar(inserted, st, actionQuery);
                 break;
 
-            case "clientes":
+            case "clientes_factura":
                 new ClientesFacturaDAO().Insertar(inserted, st, actionQuery);
                 break;
 

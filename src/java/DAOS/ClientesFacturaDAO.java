@@ -63,4 +63,9 @@ public class ClientesFacturaDAO<T> implements IDAO {
             Logger.getLogger(ClientesFacturaDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+
+    @Override
+    public void Actualizar(List<String> changedRow, Statement st, String actionQuery) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 }

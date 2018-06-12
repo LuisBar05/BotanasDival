@@ -143,7 +143,7 @@
 
                                                         <div class="form-group">
                                                             <select name="ingrediente" class="form-control" required>
-                                                                <option value=0>Ingrediente:</option>
+                                                                <option value="">Ingrediente</option>
                                                                 <%
                                                                     List<Ingredientes> ingredientes = ConsultarDB.getConsulta("ingredientes");
 
@@ -164,7 +164,7 @@
 
                                                         <div class="form-group">
                                                             <select name="status" class="form-control" required>
-                                                                <option value=0>Status:</option>
+                                                                <option value="">Status:</option>
                                                                 <%
                                                                     List<Status> status = ConsultarDB.getConsulta("status");
 
@@ -185,54 +185,69 @@
                                                 </div>
 
                                                 <p><br></p>
-                                                <p class="tm-text">Para editar los datos de un registro existente, seleccione uno de la tabla y a continuación de click en el boton "Editar registro" para modificarlo.</p>
+                                                <p class="tm-text">Para editar los datos de un registro existente, seleccione uno de la y a continuación de click en el boton "Editar registro" para modificarlo.</p>
                                                 <button class="collapsible tm-submit-btn">Editar registro</button>
-                                                <!-- form (nuevo registro) -->
+                                                <!-- form (editar registro) -->
                                                 <div class="content tm-bg-white-translucent text-xs-left tm-textbox tm-2-col-textbox-2 tm-textbox-padding" style="display: none;">
-                                                    <form action="index.html" method="post" class="tm-contact-form">
-
+                                                    <form action="ProcessUpdateFormAlmacen.jsp" method="post" class="tm-contact-form">
                                                         <div class="form-group">
-                                                            <select name="ingredientes" class="form-control" required>
-                                                                <option value=0>Ingrediente:</option>
+                                                            <select name="idAlmacen" class="form-control" required>
+                                                                <option value="">No. Registro</option>
                                                                 <%
-                                                                    List<Ingredientes> ingredientes2 = ConsultarDB.getConsulta("ingredientes");
-
-                                                                    for (Ingredientes ingred : ingredientes2) {
-                                                                        out.println("<option value=" + ingred.getIdIngred() + ">" + ingred.getNombreIngred() + "</option>");
+                                                                    List<Almacen> listAlm = ConsultarDB.getConsulta("almacen");
+                                                                    for (Almacen alm : listAlm) {
+                                                                        out.println("<option value=" + alm.getIdAlmacen() + ">" + alm.getIdAlmacen() + "</option>");
                                                                     }
                                                                 %>
                                                             </select>
                                                         </div>
 
-                                                        <div class="form-group">
-                                                            <input type="text" id="cantidad" name="contact_name" class="form-control" placeholder="Cantidad:"  required/>
+                                                        <button type="submit" class="collapsible tm-submit-btn">Obtener valores</button>
+                                                        <div class="content tm-bg-white-translucent text-xs-left tm-textbox tm-2-col-textbox-2 tm-textbox-padding" style="display: none;">
+
+                                                            <div class="form-group">
+                                                                <select name="ingrediente" class="form-control" required>
+                                                                    <option value="">Ingrediente</option>
+                                                                    <%
+                                                                        List<Ingredientes> ingredientes2 = ConsultarDB.getConsulta("ingredientes");
+
+                                                                        for (Ingredientes ingred : ingredientes2) {
+                                                                            out.println("<option value=" + ingred.getIdIngred() + ">" + ingred.getNombreIngred() + " (Cant: " + ingred.getCantidad() + ")</option>");
+                                                                        }
+                                                                    %>
+                                                                </select>
+                                                            </div>
+
+                                                            <div class="form-group">
+                                                                <input type="number" id="camtidad" name="cantidad" class="form-control" placeholder="Cantidad" required/>
+                                                            </div>
+
+                                                            <div class="form-group">
+                                                                <input type="date" id="fechaCaducidad" name="fechaCaducidad" class="form-control" placeholder="Fecha de Caducidad:"  required/>
+                                                            </div>
+
+                                                            <div class="form-group">
+                                                                <select name="status" class="form-control" required>
+                                                                    <option value="">Status:</option>
+                                                                    <%
+                                                                        List<Status> stat = ConsultarDB.getConsulta("status");
+
+                                                                        for (Status sta : stat) {
+                                                                            out.println("<option value=" + sta.getStatus() + ">" + sta.getDescripcionStatus() + "</option>");
+                                                                        }
+                                                                    %>
+                                                                </select>
+                                                            </div>
+
+                                                            <div class="form-group">
+                                                                <textarea id="observaciones" name="observaciones" class="form-control" rows="3" placeholder="Observaciones:" ></textarea>
+                                                            </div>
+
+                                                            <button type="submit" class="pull-xs-right tm-submit-btn">Guardar cambios</button>
                                                         </div>
-
-                                                        <div class="form-group">
-                                                            <input type="text" id="fechaCaducidad" name="contact_name" class="form-control" placeholder="Fecha de Caducidad:"  required/>
-                                                        </div>
-
-                                                        <div class="form-group">
-                                                            <select name="status" class="form-control" required>
-                                                                <option value=0>Status:</option>
-                                                                <%
-                                                                    List<Status> status2 = ConsultarDB.getConsulta("status");
-
-                                                                    for (Status sta : status2) {
-                                                                        out.println("<option value=" + sta.getStatus() + ">" + sta.getDescripcionStatus() + "</option>");
-                                                                    }
-                                                                %>
-                                                            </select>
-                                                        </div>
-
-                                                        <div class="form-group">
-                                                            <textarea id="observaciones" name="observaciones" class="form-control" rows="3" placeholder="Observaciones:" required></textarea>
-                                                        </div>
-
-                                                        <button type="submit" class="pull-xs-right tm-submit-btn">Guardar</button>
-
                                                     </form>
                                                 </div>
+
                                                 <script>
                                                     var coll = document.getElementsByClassName("collapsible");
                                                     var i;
@@ -262,8 +277,8 @@
                                                             <th> Fecha de Caducidad </th>
                                                             <th> Status </th>
                                                         </tr>
-                                                        <%  List<Almacen> listAlm = ConsultarDB.getConsulta("almacen");
-                                                            List<Ingredientes> listIngred = ConsultarDB.getConsulta("ingredientes");
+                                                        <%  //List<Almacen> listAlm = ConsultarDB.getConsulta("almacen");
+                                                            //List<Ingredientes> listIngred = ConsultarDB.getConsulta("ingredientes");
 
                                                             for (int i = 0; i < listAlm.size(); i++) {
 
