@@ -13,7 +13,7 @@ public class ConnectionDB {
     private String baseDatos = "db_dival";
     private String máquina = "localhost";
     private String usuario = "root";
-    private String password = "BalbyReny210897";
+    private String password = "Kimbra";
     private int puerto = 3306;
     private String servidor = "";
     private Connection conexion = null;
