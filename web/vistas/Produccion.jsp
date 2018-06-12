@@ -123,6 +123,7 @@
                                 </div>
                             </div>
                         </div>
+                    </div>
                 </li>
 
                 <!-- Pestaña 2, Secciones -->
@@ -185,28 +186,14 @@
                                                 </div>
 
                                                 <p><br></p>
-                                                <p class="tm-text">Para editar los datos de un registro existente, seleccione uno de la y a continuación de click en el boton "Editar registro" para modificarlo.</p>
+                                                <p class="tm-text">Para editar los datos de un registro existente, seleccione una fila de la tabla y a continuación de click en el boton "Editar registro" para modificarlo.</p>
                                                 <button class="collapsible tm-submit-btn">Editar registro</button>
                                                 <!-- form (editar registro) -->
                                                 <div class="content tm-bg-white-translucent text-xs-left tm-textbox tm-2-col-textbox-2 tm-textbox-padding" style="display: none;">
                                                     <form action="ProcessUpdateFormAlmacen.jsp" method="post" class="tm-contact-form">
-                                                        <div class="form-group">
-                                                            <select name="idAlmacen" class="form-control" required>
-                                                                <option value="">No. Registro</option>
-                                                                <%
-                                                                    List<Almacen> listAlm = ConsultarDB.getConsulta("almacen");
-                                                                    for (Almacen alm : listAlm) {
-                                                                        out.println("<option value=" + alm.getIdAlmacen() + ">" + alm.getIdAlmacen() + "</option>");
-                                                                    }
-                                                                %>
-                                                            </select>
-                                                        </div>
-
-                                                        <button type="submit" class="collapsible tm-submit-btn">Obtener valores</button>
-                                                        <div class="content tm-bg-white-translucent text-xs-left tm-textbox tm-2-col-textbox-2 tm-textbox-padding" style="display: none;">
-
+                                                        
                                                             <div class="form-group">
-                                                                <select name="ingrediente" class="form-control" required>
+                                                                <select name="ingrediente" id="ingredienteE" class="form-control" required>
                                                                     <option value="">Ingrediente</option>
                                                                     <%
                                                                         List<Ingredientes> ingredientes2 = ConsultarDB.getConsulta("ingredientes");
@@ -219,15 +206,15 @@
                                                             </div>
 
                                                             <div class="form-group">
-                                                                <input type="number" id="camtidad" name="cantidad" class="form-control" placeholder="Cantidad" required/>
+                                                                <input type="number" id="cantidadE" name="cantidad" class="form-control" placeholder="Cantidad" required/>
                                                             </div>
 
                                                             <div class="form-group">
-                                                                <input type="date" id="fechaCaducidad" name="fechaCaducidad" class="form-control" placeholder="Fecha de Caducidad:"  required/>
+                                                                <input type="date" id="fechaCaducidadE" name="fechaCaducidad" class="form-control" placeholder="Fecha de Caducidad:"  required/>
                                                             </div>
 
                                                             <div class="form-group">
-                                                                <select name="status" class="form-control" required>
+                                                                <select name="status" id="statusE" class="form-control" required>
                                                                     <option value="">Status:</option>
                                                                     <%
                                                                         List<Status> stat = ConsultarDB.getConsulta("status");
@@ -244,7 +231,7 @@
                                                             </div>
 
                                                             <button type="submit" class="pull-xs-right tm-submit-btn">Guardar cambios</button>
-                                                        </div>
+   
                                                     </form>
                                                 </div>
 
@@ -269,7 +256,7 @@
                                             <div class="tm-bg-white-translucent text-xs-center tm-2-col-textbox-2 tm-textbox-padding tm-textbox-padding-contact">
                                                 <h2 class="tm-contact-info">Registros en el Almacén:</h2>
                                                 <div>
-                                                    <table border="3" class="pull-xs-right text-xs-center">
+                                                    <table border="3" class="pull-xs-right text-xs-center" id="tablaAlmacen">
                                                         <tr style="background-color:#FFD221">
                                                             <th> No. Registro </th>
                                                             <th> Ingrediente </th>
@@ -277,7 +264,8 @@
                                                             <th> Fecha de Caducidad </th>
                                                             <th> Status </th>
                                                         </tr>
-                                                        <%  //List<Almacen> listAlm = ConsultarDB.getConsulta("almacen");
+                                                        <%  
+                                                            List<Almacen> listAlm = ConsultarDB.getConsulta("almacen");
                                                             //List<Ingredientes> listIngred = ConsultarDB.getConsulta("ingredientes");
 
                                                             for (int i = 0; i < listAlm.size(); i++) {
@@ -292,6 +280,20 @@
                                                             }
                                                         %>
                                                     </table>
+                                                    <script>
+                                                        var table = document.getElementById('tablaAlmacen');
+
+                                                        for(var i = 1; i < table.rows.length; i++)
+                                                        {
+                                                            table.rows[i].onclick = function()
+                                                            {
+                                                                 document.getElementById("ingredienteE").value = this.cells[1].innerHTML;
+                                                                 document.getElementById("cantidadE").value = this.cells[2].innerHTML;
+                                                                 document.getElementById("fechaCaducidadE").value = this.cells[3].innerHTML;
+                                                                 document.getElementById("statusE").value = this.cells[4].innerHTML;
+                                                            };
+                                                        }
+                                                    </script>
                                                 </div>
                                             </div>
 
@@ -516,74 +518,73 @@
 
         <script>
 
-                                                    function adjustHeightOfPage(pageNo) {
+            function adjustHeightOfPage(pageNo) {
 
-                                                        var offset = 80;
-                                                        var pageContentHeight = 0;
+            var offset = 80;
+            var pageContentHeight = 0;
 
-                                                        var pageType = $('div[data-page-no="' + pageNo + '"]').data("page-type");
+            var pageType = $('div[data-page-no="' + pageNo + '"]').data("page-type");
 
-                                                        if (pageType != undefined && pageType == "gallery") {
-                                                            pageContentHeight = $(".cd-hero-slider li:nth-of-type(" + pageNo + ") .tm-img-gallery-container").height();
-                                                        } else {
-                                                            pageContentHeight = $(".cd-hero-slider li:nth-of-type(" + pageNo + ") .js-tm-page-content").height();
-                                                        }
+            if (pageType != undefined && pageType == "gallery") {
+                pageContentHeight = $(".cd-hero-slider li:nth-of-type(" + pageNo + ") .tm-img-gallery-container").height();
+            } else {
+                pageContentHeight = $(".cd-hero-slider li:nth-of-type(" + pageNo + ") .js-tm-page-content").height();
+            }
 
-                                                        if ($(window).width() >= 992) {
-                                                            offset = 120;
-                                                        } else if ($(window).width() < 480) {
-                                                            offset = 40;
-                                                        }
+            if ($(window).width() >= 992) {
+                offset = 120;
+            } else if ($(window).width() < 480) {
+                offset = 40;
+            }
 
-                                                        // Get the page height
-                                                        var totalPageHeight = 15 + $('.cd-slider-nav').height()
-                                                                + pageContentHeight + offset
-                                                                + $('.tm-footer').height();
+            // Get the page height
+            var totalPageHeight = 15 + $('.cd-slider-nav').height()
+                    + pageContentHeight + offset
+                    + $('.tm-footer').height();
 
-                                                        // Adjust layout based on page height and window height
-                                                        if (totalPageHeight > $(window).height())
-                                                        {
-                                                            $('.cd-hero-slider').addClass('small-screen');
-                                                            $('.cd-hero-slider li:nth-of-type(' + pageNo + ')').css("min-height", totalPageHeight + "px");
-                                                        } else
-                                                        {
-                                                            $('.cd-hero-slider').removeClass('small-screen');
-                                                            $('.cd-hero-slider li:nth-of-type(' + pageNo + ')').css("min-height", "100%");
-                                                        }
-                                                    }
+            // Adjust layout based on page height and window height
+            if (totalPageHeight > $(window).height())
+            {
+                $('.cd-hero-slider').addClass('small-screen');
+                $('.cd-hero-slider li:nth-of-type(' + pageNo + ')').css("min-height", totalPageHeight + "px");
+            } else
+            {
+                $('.cd-hero-slider').removeClass('small-screen');
+                $('.cd-hero-slider li:nth-of-type(' + pageNo + ')').css("min-height", "100%");
+            }
+            }
 
-                                                    /*
-                                                     Everything is loaded including images.
-                                                     */
-                                                    $(window).load(function() {
+            /*
+            Everything is loaded including images.
+            */
+            $(window).load(function() {
 
-                                                        adjustHeightOfPage(1); // Adjust page height
+            adjustHeightOfPage(1); // Adjust page height
 
 
-                                                        /* Collapse menu after click
-                                                         -----------------------------------------*/
-                                                        $('#tmNavbar a').click(function() {
-                                                            $('#tmNavbar').collapse('hide');
+            /* Collapse menu after click
+             -----------------------------------------*/
+            $('#tmNavbar a').click(function() {
+                $('#tmNavbar').collapse('hide');
 
-                                                            adjustHeightOfPage($(this).data("no")); // Adjust page height
-                                                        });
+                adjustHeightOfPage($(this).data("no")); // Adjust page height
+            });
 
-                                                        /* Browser resized
-                                                         -----------------------------------------*/
-                                                        $(window).resize(function() {
-                                                            var currentPageNo = $(".cd-hero-slider li.selected .js-tm-page-content").data("page-no");
+            /* Browser resized
+             -----------------------------------------*/
+            $(window).resize(function() {
+                var currentPageNo = $(".cd-hero-slider li.selected .js-tm-page-content").data("page-no");
 
-                                                            // wait 3 seconds
-                                                            setTimeout(function() {
-                                                                adjustHeightOfPage(currentPageNo);
-                                                            }, 1000);
+                // wait 3 seconds
+                setTimeout(function() {
+                    adjustHeightOfPage(currentPageNo);
+                }, 1000);
 
-                                                        });
+            });
 
-                                                        // Remover preloader (https://ihatetomatoes.net/create-custom-preloading-screen/)
-                                                        $('body').addClass('loaded');
-                                                    });
-
+            // Remover preloader (https://ihatetomatoes.net/create-custom-preloading-screen/)
+            $('body').addClass('loaded');
+            });
 
         </script>
     </body>
